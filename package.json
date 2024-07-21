@@ -1,0 +1,49 @@
+{
+  "name": "fuji_filmsim_tool",
+  "version": "1.0.0",
+  "description": "Tool to unlock fujifilm film simulation from previous model camera",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dev": "DEV=true && nodemon --exec electron .",
+    "build": "electron-builder",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "build": {
+    "appId": "com.fujifilmsimtool.evanc923",
+    "productName": "Fuji FilmSim Unlock Tool",
+    "directories": {
+      "buildResources": "assets"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "renderer.js",
+      "index.html",
+      "!node_modules/*",
+      "!dist/*",
+      "package.json",
+      "exiftool/**"
+    ],
+    "mac": {
+      "icon": "assets/icon.png",
+      "binaries": [
+        "exiftool/*"
+      ],
+      "extraFiles": [
+        {
+          "from": "exiftool/",
+          "to": "Resources/exiftool/",
+          "filter": ["**/*"]
+        }
+      ]
+    }
+  },
+  "author": "evan.chan",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^31.2.1",
+    "electron-builder": "^24.13.3",
+    "nodemon": "^3.1.4"
+  }
+}
